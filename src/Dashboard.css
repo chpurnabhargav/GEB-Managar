@@ -1,0 +1,467 @@
+/* --- GLOBAL STYLES & THEMING --- */
+:root {
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --radius: 0.75rem;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+}
+
+.theme-light {
+    --color-bg-primary: #f8f9fa; /* Lighter grey background */
+    --color-bg-secondary: #ffffff; /* White cards */
+    --color-bg-tertiary: #f1f5f9;
+    --color-text-primary: #1e293b;
+    --color-text-secondary: #64748b;
+    --color-border: #e2e8f0;
+    --color-accent-1: #4f46e5; /* Indigo */
+    --color-accent-2: #9ca3af; /* Grey */
+    --color-positive: #16a34a;
+    --color-negative: #dc2626;
+    --color-warning: #f59e0b;
+}
+
+/* --- NEW HIGH-CONTRAST DARK THEME --- */
+.theme-dark {
+    --color-bg-primary: #ffffff; /* Very dark, almost black background */
+    --color-bg-secondary: #332828; /* Slightly lighter card background */
+    --color-bg-tertiary: #ffffff;
+    --color-text-primary: #e6edf3; /* Much brighter primary text */
+    --color-text-secondary: #8b949e; /* Brighter secondary text */
+    --color-border: #2c588a; /* Clearer border color */
+    --color-accent-1: #58a6ff; /* Vibrant blue for accents */
+    --color-accent-2: #89929b; /* Lighter grey for secondary accents */
+    --color-positive: #56d364;
+    --color-negative: #f85149;
+    --color-warning: #e3b341;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* --- MAIN LAYOUT --- */
+.cfo-dashboard {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background-color: var(--color-bg-secondary);
+    border-right: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 2rem 2.5rem;
+    overflow-y: auto;
+}
+
+/* --- SIDEBAR COMPONENTS --- */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.sheet-nav {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sheet-item {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.sheet-item:hover {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+}
+
+.sheet-item.active {
+    background-color: var(--color-accent-1);
+    color: #ffffff;
+}
+
+.sheet-item.active .delete-sheet-btn {
+    color: #ffffff;
+    opacity: 0.7;
+}
+
+.sheet-item.active .delete-sheet-btn:hover {
+    opacity: 1;
+}
+
+
+/* --- MAIN CONTENT LAYOUT --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.usage-stats {
+    display: flex;
+    gap: 1.5rem;
+    background-color: var(--color-bg-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+}
+
+.usage-stats strong {
+    color: var(--color-text-primary);
+}
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.column-left,
+.column-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+/* --- CARD & GRID STYLES --- */
+.card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease-in-out;
+}
+
+.card-title {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.inputs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* --- FORM ELEMENTS & INPUTS --- */
+.input-group,
+.slider-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label,
+.slider-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.slider-group {
+    gap: 0.5rem;
+}
+
+.slider-group label strong {
+    color: var(--color-text-primary);
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-tertiary);
+    color: black;
+    font-size: 1rem;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus {
+    outline: 2px solid var(--color-accent-1);
+    border-color: black;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--color-bg-tertiary);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--color-accent-1);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+/* --- BUTTONS --- */
+.theme-toggle,
+.delete-sheet-btn,
+.add-sheet-btn,
+.btn-primary,
+.btn-secondary {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    border-radius: var(--radius);
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.theme-toggle {
+    color: var(--color-text-secondary);
+    padding: 0.5rem;
+}
+
+.theme-toggle:hover {
+    background-color: var(--color-bg-tertiary);
+}
+
+.delete-sheet-btn {
+    color: var(--color-text-secondary);
+    padding: 0.25rem;
+    background-color: transparent;
+    opacity: 0.5;
+}
+
+.sheet-item:hover .delete-sheet-btn {
+    opacity: 1;
+}
+
+.add-sheet-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+}
+
+.add-sheet-btn:hover {
+    background-color: var(--color-bg-tertiary);
+}
+
+.scenario-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.75rem 1.25rem;
+    justify-content: center;
+    flex: 1;
+}
+
+.btn-primary {
+    background-color: var(--color-accent-1);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    border-color: #8b949e;
+}
+
+
+/* --- KPI & CHART CARDS --- */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.kpi-card {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.kpi-card p {
+    margin: 0 0 0.5rem 0;
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+}
+
+.kpi-card h2 {
+    margin: 0;
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+
+.kpi-card small {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.positive {
+    color: var(--color-positive);
+}
+
+.negative {
+    color: var(--color-negative);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+.chart-card {
+    padding-bottom: 1rem;
+}
+
+.recharts-legend-item-text {
+    color: var(--color-text-secondary) !important;
+}
+
+.recharts-text,
+.recharts-cartesian-axis-tick-value {
+    fill: var(--color-text-secondary);
+    font-size: 12px;
+}
+
+
+/* --- SPECIAL COMPONENTS --- */
+.pathway-update-box {
+    background-color: var(--color-bg-primary);
+    padding: 1rem;
+    border-radius: var(--radius);
+    text-align: center;
+    border: 1px solid var(--color-border);
+}
+
+.pathway-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-accent-1);
+}
+
+.pathway-update-box small {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.no-sheet-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.no-sheet-view h1 {
+    font-size: 2rem;
+}
+
+.no-sheet-view p {
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+}
+
+.no-sheet-view .btn-primary {
+    padding: 0.75rem 1.5rem;
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1200px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+        /* A real app would have a mobile toggle menu */
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}
