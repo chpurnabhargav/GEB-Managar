@@ -1,12 +1,29 @@
-# React + Vite
+CFO Financial Dashboard 📊
+Overview
+This is a standalone, single-file financial dashboard application built with React and Recharts. It's designed for CFOs and financial planners to model different business scenarios and understand their impact on key metrics like profitability and financial runway.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The entire application, including styles and logic, is contained within the cfo_dashboard.html file.
 
-Currently, two official plugins are available:
+Key Features
+🧪 Scenario Simulation: Interactively adjust variables like marketing spend, new hires, and product pricing to see projected outcomes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📈 Dynamic KPIs: Key Performance Indicators (KPIs) like "Projected Monthly Profit" and "Financial Runway" update in real-time.
 
-## Expanding the ESLint configuration
+🎨 Data Visualization: Interactive pie and bar charts provide a clear breakdown of expenses and profitability comparisons.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+📡 Live Data Integration: Mocks a live API feed (Pathway_API) to pull in changing miscellaneous expenses.
+
+📂 Multi-Sheet Management: Create, delete, and switch between different financial sheets.
+
+📄 Report Exporting: Generate and download a .docx summary of the current financial scenario.
+
+💾 Persistent State: Your financial sheets are saved to your browser's local storage, so your data persists between sessions.
+
+🌗 Light & Dark Modes: Includes a modern, high-contrast dark theme for user comfort.
+
+How to Use
+Download: Save the cfo_dashboard.html file to your local machine.
+
+Open: Open the file directly in any modern web browser (like Chrome, Firefox, or Edge).
+
+That's it! No installation or build process is required. The application will run locally in your browser.
